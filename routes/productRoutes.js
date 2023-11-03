@@ -22,7 +22,11 @@ router.use(authController.protect, authController.restrictTo('admin'));
 router
   .route('/:id')
   .get(productController.getProduct)
-  .patch(productController.updateProduct)
+  .patch(
+    productController.uploadProductImages,
+    productController.resizeProductImages,
+    productController.updateProduct
+  )
   .delete(productController.deleteProduct);
 
 module.exports = router;
